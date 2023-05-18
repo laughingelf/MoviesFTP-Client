@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -32,7 +32,106 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#header {
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: grey;
+}
+
+#nav-img {
+  display: flex;
+  background-color: grey;
+  height: 18vh;
+}
+
+#nav-links a,
+#nav-login a {
+  margin: 0 5px 0 5px;
+  color: white;
+}
+
+#search-bar {
+  margin: 1vh 0 1vh 1vh;
+}
+
+#search-bar button {
+  color: #15B7B9;
+  font-weight: bold;
+  border-color: black;
+  background-color: grey;
+}
+
+.movie-block {
+  border: 1px solid black;
+  border-radius: 30px;
+  box-shadow: 10px -5px .4em #15B7B9;
+  height: 25vh;
+  margin: 2%;
+}
+
+#all-movie-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-card {
+  margin: 2%;
+  padding: 2%;
+  width: 20vw;
+  display: flex;
+  text-align: center;
+}
+
+.movie-card img,
+#movie-card-poster img {
+  box-shadow: 5px -5px .4em black;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.moviedata-details {
+  font-weight: bold;
+}
+
+#add-movie-card {
+  display: flex;
+}
+
+
+#add-movie-card {
+  padding: 2%;
+}
+
+#movie-card-data {
+  padding: 2% 4% 2% 4%;
+  border: 1px solid black;
+  width: 50%;
+  margin-left: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#movie-card-data p {
+  display: flex;
+}
+
+#movie-card-data button {
+  width: 15vw;
+}
+
+#movie-card-poster {
+  text-align: center;
 }

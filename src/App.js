@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Navbar from './components/Navbar';
+import Homepage from './pages/Homepage';
+import MoviesList from './pages/MoviesList';
+import UserList from './pages/UserList';
+import SearchBar from './components/SearchBar';
+import Signup from './pages/Signup';
+import LoginPage from './pages/LoginPage';
+import MovieDetails from './pages/MovieDetails';
+import UserProfile from './pages/UserProfile';
+import AddMovie from './pages/AddMovie';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Navbar />
+      <SearchBar />
+
+      <Routes>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/movies/all-movies' element={<MoviesList />} />
+        <Route path='/movies/movie-details/:id' element={<MovieDetails />} />
+        <Route path='/movies/add-movie/:movieName' element={<AddMovie />} />
+
+        <Route path='/users/all-users' element={<UserList />} />
+        <Route path='/users/user-details/:id' element={<UserProfile />} />
+
+        <Route path='/auth/signup' element={<Signup />} />
+        <Route path='/auth/login' element={<LoginPage />} />
+      </Routes>
+
+
     </div>
   );
 }
