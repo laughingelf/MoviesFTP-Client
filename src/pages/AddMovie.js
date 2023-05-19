@@ -10,7 +10,7 @@ import { baseUrl } from "../services/baseUrl"
 
 
 const AddMovie = () => {
-    const { movieData } = useContext(MovieContext)
+    const { movieData, setMovieData } = useContext(MovieContext)
     const [movie, setMovie] = useState('')
     const navigate = useNavigate()
     const { movieName } = useParams()
@@ -28,9 +28,21 @@ const AddMovie = () => {
     }, [movieName])
 
     const handleAddMovie = () => {
+
+        console.log('this is the movie we are adding', movie)
         axios.post(baseUrl + '/movies/add-movie', movie)
             .then((newMovie) => {
-                navigate(`/movies/all-movies`)
+                console.log('this the created movie', newMovie.data)
+                if (newMovie.data.message) {
+                    navigate(`/movies/movie-details/${newMovie.data.f_id}`)
+
+                } else {
+                    setMovieData([...movieData, newMovie.data])
+                    navigate(`/movies/all-movies`)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
             })
 
         // movieData.map((mov) => {
@@ -66,17 +78,17 @@ const AddMovie = () => {
                     <img src={movie.Poster} />
                 </div>
                 <div id="movie-card-data">
-                    <p><span className="moviedata-details">Released Date: </span>{movie.Year}</p>
-                    <p><span className="moviedata-details">Rated: </span>{movie.Rated}</p>
-                    <p><span className="moviedata-details">Runtime: </span>{movie.Runtime}</p>
-                    <p><span className="moviedata-details">Genre: </span>{movie.Genre}</p>
-                    <p><span className="moviedata-details">Director: </span>{movie.Director}</p>
-                    <p><span className="moviedata-details">Main Actors: </span>{movie.Actors}</p>
-                    <p><span className="moviedata-details">Plot: </span>{movie.Plot}</p>
-                    <p><span className="moviedata-details">Awards: </span>{movie.Awards}</p>
-                    <p><span className="moviedata-details">IMDB Rating: </span>{movie.imdbRating}</p>
-                    <p><span className="moviedata-details">IMDB Votes: </span>{movie.imdbVotes}</p>
-                    <p><span className="moviedata-details">Box Office: </span>{movie.BoxOffice}</p>
+                    <p><span className="moviedata-details">Released Date: </span>&nbsp;{movie.Year}</p>
+                    <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
+                    <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
+                    <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
+                    <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
+                    <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
+                    <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
+                    <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
+                    <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
+                    <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
+                    <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
 
 
 

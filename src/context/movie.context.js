@@ -7,7 +7,7 @@ const MovieContext = createContext()
 function MovieContextProvider({ children }) {
     const [movieData, setMovieData] = useState([])
 
-    useEffect(() => {
+    const getMovies = () => {
         axios.get(baseUrl + '/movies/all-movies')
             .then((res) => {
                 // console.log(res.data)
@@ -16,9 +16,9 @@ function MovieContextProvider({ children }) {
             .catch((err) => {
                 console.log(err)
             })
-    }, []) // need help here ---------------->>>>>>>>>>>>>>>>>
+    } // need help here ---------------->>>>>>>>>>>>>>>>>
     return (
-        <MovieContext.Provider value={{ movieData, setMovieData }}>
+        <MovieContext.Provider value={{ movieData, setMovieData, getMovies }}>
             {children}
         </MovieContext.Provider>
     )

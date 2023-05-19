@@ -31,7 +31,7 @@ const Navbar = () => {
                         Users
                     </Link>
                     <Link to='/'>
-                        Movies
+                        Genres
                     </Link>
                 </div>
             </nav>

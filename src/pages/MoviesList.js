@@ -1,10 +1,18 @@
 import { MovieContext } from "../context/movie.context"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const MoviesList = () => {
 
-    const { movieData } = useContext(MovieContext)
+    const { movieData, getMovies } = useContext(MovieContext)
+
+
+    useEffect(() => {
+        if (!movieData.length) {
+            getMovies()
+        }
+
+    }, [])
 
     return (
         <div id="all-movie-cards">
