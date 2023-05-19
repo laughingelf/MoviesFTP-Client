@@ -4,8 +4,14 @@ import { baseUrl } from "../services/baseUrl";
 
 const MovieContext = createContext()
 
+
+
+
+
 function MovieContextProvider({ children }) {
     const [movieData, setMovieData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [user, setUser] = useState(null)
 
     const getMovies = () => {
         axios.get(baseUrl + '/movies/all-movies')
@@ -18,7 +24,7 @@ function MovieContextProvider({ children }) {
             })
     } // need help here ---------------->>>>>>>>>>>>>>>>>
     return (
-        <MovieContext.Provider value={{ movieData, setMovieData, getMovies }}>
+        <MovieContext.Provider value={{ movieData, user, isLoading, setMovieData, getMovies, setIsLoading, setUser }}>
             {children}
         </MovieContext.Provider>
     )

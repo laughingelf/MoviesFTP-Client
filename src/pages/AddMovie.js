@@ -29,10 +29,10 @@ const AddMovie = () => {
 
     const handleAddMovie = () => {
 
-        console.log('this is the movie we are adding', movie)
+        // console.log('this is the movie we are adding', movie)
         axios.post(baseUrl + '/movies/add-movie', movie)
             .then((newMovie) => {
-                console.log('this the created movie', newMovie.data)
+                // console.log('this the created movie', newMovie.data)
                 if (newMovie.data.message) {
                     navigate(`/movies/movie-details/${newMovie.data.f_id}`)
 
