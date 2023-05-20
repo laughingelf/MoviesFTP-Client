@@ -27,7 +27,7 @@ function App() {
         <Route path='/movies/add-movie/:movieName' element={<AddMovie />} />
 
         <Route path='/users/all-users' element={<UserList />} />
-        <Route path='/users/user-details/:id' element={<UserProfile />} />
+        <Route path='/users/profile' element={<UserProfile />} />
 
         <Route path='/auth/signup' element={<Signup />} />
         <Route path='/auth/login' element={<LoginPage />} />

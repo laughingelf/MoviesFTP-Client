@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom"
-// import logo from '../images/mftpLogoUpdated.png'
+import { useContext } from "react"
+import { AuthContext } from "../context/auth.context"
+
 
 const Navbar = () => {
+
+    const { logOutUser } = useContext(AuthContext)
+
+    const getToken = () => {
+        return localStorage.getItem('authToken')
+    }
+
+
+
     return (
 
         <div id="header">
@@ -13,26 +24,41 @@ const Navbar = () => {
                         <img src="/img/Movie_Logo2-resize.png" alt='logo' />
                     </Link>
 
-                    {/* <Link to='/movies/search'>
-                        Search
-                    </Link> */}
                 </div>
                 <div id="nav-login">
-                    <Link to='/auth/login'>
-                        Login
-                    </Link>
-                    <Link to='/auth/logout'>
-                        Logout
-                    </Link>
-                    <Link to='/auth/signup'>
-                        Sign Up
-                    </Link>
-                    <Link to='/users/all-users'>
-                        Users
-                    </Link>
-                    <Link to='/'>
-                        Genres
-                    </Link>
+
+                    {getToken() ?
+
+                        <>
+                            <button>
+                                <Link to='/users/profile'>
+                                    Profile
+                                </Link>
+                            </button>
+                            <button>
+                                <Link to='/'>
+                                    Genres
+                                </Link>
+                            </button>
+                            <button onClick={logOutUser}>
+                                Logout
+                            </button>
+                        </>
+
+                        :
+
+                        <>
+                            <Link to='/auth/login'>
+                                Login
+                            </Link>
+
+                            <Link to='/auth/signup'>
+                                Sign Up
+                            </Link>
+                        </>
+
+                    }
+
                 </div>
             </nav>
 
