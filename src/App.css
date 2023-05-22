@@ -6,6 +6,7 @@ html {
   /* text-align: center; */
   background-color: whitesmoke;
   font-family: Hanuman;
+  color: black;
 }
 
 .App a {
@@ -21,6 +22,12 @@ html {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #15B7B9;
 }
 
 .App-header {
@@ -125,6 +132,10 @@ nav {
   padding: 2%;
 }
 
+#add-movie-btn {
+  margin-left: 3%;
+}
+
 #movie-card-data {
   padding: 2% 4% 2% 4%;
   border: 1px solid black;
@@ -201,13 +212,45 @@ nav {
   text-decoration: underline;
 }
 
+#profile-data h3 {
+  margin: 2% 0 2% 0;
+}
+
 #img-card {
   display: flex;
   flex-direction: column;
 }
 
-#img-card label {
-  margin-top: 1vh;
-  text-decoration: underline;
-  font-weight: bold;
+#update-photo-form {
+  display: flex;
+  flex-direction: column;
+  margin: 3% 1% 1% 1%;
+}
+
+#update-photo-form button {
+  width: 10vw;
+  margin: 1%;
+  border: 1px solid black;
+}
+
+#update-form {
+  /* background-color: grey; */
+  /* padding: 5%; */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#silly-button {
+  background-color: #15B7B9;
+  /* border: 1px solid black */
+}
+
+#rating-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: max-content;
+  margin: 10px;
+  width: auto;
 }

@@ -70,7 +70,7 @@ const AddMovie = () => {
 
     return (
         <div>
-            <button onClick={handleAddMovie} >Add Movie</button>
+            <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
             <div id="add-movie-card">
 
                 <div id="movie-card-poster">
