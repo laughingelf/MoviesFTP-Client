@@ -142,7 +142,7 @@ nav {
   border-radius: 30px;
   box-shadow: 5px -5px .4em black;
   background-color: whitesmoke;
-  width: 50%;
+  /* width: 50%; */
   margin-left: 15vw;
   display: flex;
   flex-direction: column;
@@ -153,12 +153,72 @@ nav {
   display: flex;
 }
 
+#comment-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#profile-title {
+  font-size: xx-large;
+  text-decoration: underline;
+  color: #15B7B9;
+}
+
+#ratings {
+  display: flex;
+  flex-direction: column;
+}
+
+#ratings p {
+  margin: .8em 0 .8em 0;
+  color: #15B7B9;
+  /* text-decoration: underline; */
+  font-weight: bold;
+  font-size: x-large;
+  border: 1px solid black;
+  box-shadow: 5px -5px .4em black;
+  width: fit-content;
+  padding: .5em;
+  border-radius: 50%;
+}
+
+.rating-label {
+  font-weight: bold;
+  border: 1px solid black;
+  padding: .19em;
+  border-radius: 30px;
+  box-shadow: 5px -5px .4em black;
+  background-color: #15B7B9;
+}
+
+
 #movie-card-data button {
   width: 15vw;
 }
 
 #movie-card-poster {
   text-align: center;
+}
+
+#movie-card-and-comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+}
+
+#comments {
+  margin-top: 5vh;
+}
+
+.comment-card {
+  margin: 3em;
+  padding: 6%;
+  border: 1px solid black;
+  width: 30em;
+  border-radius: 30px;
+  box-shadow: 5px -5px .4em black;
+  background-color: whitesmoke;
 }
 
 #login-form {

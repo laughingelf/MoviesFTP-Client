@@ -45,20 +45,6 @@ const AddMovie = () => {
                 console.log(err)
             })
 
-        // movieData.map((mov) => {
-        //     if (movie.Title === mov.Title) {
-        //         console.log('it exist')
-        // navigate(`/movies/movie-details/${mov._id}`)
-        // }
-        // if (movie.Title !== mov.Title) {
-        //     console.log('it does not exist')
-        // axios.post(baseUrl + '/movies/add-movie', movie)
-        //     .then((newMovie) => {
-        //         navigate(`/movies/all-movies`)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
     }
 
 

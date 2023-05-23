@@ -16,13 +16,21 @@ function MovieContextProvider({ children }) {
     const getMovies = () => {
         axios.get(baseUrl + '/movies/all-movies')
             .then((res) => {
-                // console.log(res.data)
                 setMovieData(res.data)
             })
             .catch((err) => {
                 console.log(err)
             })
     } // need help here ---------------->>>>>>>>>>>>>>>>>
+
+
+    useEffect(() => {
+        if (!movieData.length) {
+            getMovies()
+        }
+
+    }, [])
+
     return (
         <MovieContext.Provider value={{ movieData, user, isLoading, setMovieData, getMovies, setIsLoading, setUser }}>
             {children}

@@ -42,7 +42,7 @@ const Signup = () => {
                 storeToken(res.data.authToken)
                 setUser(res.data.user)
                 // console.log('this is the userdata i am looking for!!!!!!!!!!!!!!!!!!!!!', res.data.user)
-                navigate(`/`) //need to change this to go to Profile page once created
+                navigate(`/users/profile`) //need to change this to go to Profile page once created
             })
             .catch((err) => {
                 console.log('error Data', err.response.data)
