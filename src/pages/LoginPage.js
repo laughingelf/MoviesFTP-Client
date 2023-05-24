@@ -9,7 +9,7 @@ const LoginPage = () => {
 
     const { setUser } = useContext(MovieContext)
 
-    const { storeToken } = useContext(AuthContext)
+    const { storeToken, authenicateUser } = useContext(AuthContext)
 
     const [currUser, setCurrUser] = useState({
         email: "",
@@ -29,7 +29,7 @@ const LoginPage = () => {
             .then((res) => {
                 console.log("this is the returned user details: ", res.data)
                 storeToken(res.data.authToken)
-                setUser(res.data.user)
+                authenicateUser()
                 navigate('/users/profile')
             })
             .catch((err) => {

@@ -245,6 +245,12 @@ nav {
 
 }
 
+#delete-modal {
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
 #profile-img {
   height: 30vh;
   margin: 3%;
@@ -265,6 +271,35 @@ nav {
 
 #profile-page {
   margin: 3%;
+  padding: 3%;
+  height: fit-content;
+}
+
+.rating-card {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  padding: 2%;
+  margin: 1%;
+  border-radius: 30px;
+  box-shadow: 5px -5px .4em black;
+  width: 50%;
+}
+
+.rating-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.rating-buttons button {
+  margin: 1%;
+
+}
+
+#ratings-page {
+  margin: 3%;
+  padding: 3%;
 }
 
 #user-info {

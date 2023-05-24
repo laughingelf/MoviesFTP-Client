@@ -13,7 +13,7 @@ const MovieDetails = () => {
     const [showModal, setShowModal] = useState(false)
 
     const [commentData, setCommentData] = useState({
-        username: user?._id,
+
         userComments: '',
         overallRating: '1',
         watchAgainRating: '1',
@@ -38,11 +38,19 @@ const MovieDetails = () => {
         setCommentData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    const handleRatingEdit = (e) => {
+        console.log('editing')
+    }
+
+    const handleRatingDelete = (e) => {
+        console.log('deleting')
+    }
+
     const handleRatingSubmit = (e) => {
         e.preventDefault()
-        console.log('Rating Data', commentData)
+        console.log('Rating Data', user._id)
 
-        axios.post(baseUrl + `/comment/add-comment/${movie._id}`, commentData)
+        axios.post(baseUrl + `/comment/add-comment/${movie._id}`, { ...commentData, username: user._id })
             .then((updatedMovie) => {
                 console.log('Updated Movie', updatedMovie.data)//need to do more not sure
             })
@@ -214,9 +222,14 @@ const MovieDetails = () => {
                                 {movie.userRatings &&
 
                                     movie.userRatings.map((rating) => {
+                                        console.log('rating USERNAME', rating, user._id)
                                         return (
                                             <div className="comment-card">
-                                                <h1><span id="profile-title">{rating.username.username}</span></h1>
+                                                {rating.username.username ?
+                                                    <h1><span id="profile-title">{rating.username.username}</span></h1>
+                                                    :
+                                                    <h1><span id="profile-title">user No longer Exists</span></h1>
+                                                }
                                                 <div id="comment">
                                                     <label><span id="comment-title">Comments</span>
                                                         <p>{rating.userComments}</p>
@@ -230,18 +243,31 @@ const MovieDetails = () => {
                                                     <label><span className="rating-label">Trash Can Rating:</span></label>
                                                     <p>{rating.trashCanRating}</p>
 
+
+                                                </div>
+
+                                                <div>
+                                                    {rating.username._id === user._id ?
+                                                        <div className="rating-buttons">
+                                                            <button
+                                                                onClick={handleRatingEdit}>
+                                                                Edit
+                                                            </button>
+                                                            <button
+                                                                onClick={handleRatingDelete}>
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                        :
+                                                        null
+                                                    }
+
                                                 </div>
 
 
 
                                             </div>
 
-
-                                            // username: user?._id,
-                                            // userComments: '',
-                                            // overallRating: '1',
-                                            // watchAgainRating: '1',
-                                            // trashCanRating: '1'
                                         )
 
                                     })}

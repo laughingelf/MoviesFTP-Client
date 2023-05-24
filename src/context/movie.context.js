@@ -31,6 +31,8 @@ function MovieContextProvider({ children }) {
 
     }, [])
 
+    
+
     return (
         <MovieContext.Provider value={{ movieData, user, isLoading, setMovieData, getMovies, setIsLoading, setUser }}>
             {children}
