@@ -20,7 +20,6 @@ const AddMovie = () => {
 
 
     useEffect(() => {
-        console.log('im here on 23')
         movieSearch(movieName)
             .then((res) => {
                 console.log('searching for movie', res.data)
