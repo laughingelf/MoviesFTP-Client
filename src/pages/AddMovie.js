@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react"
 // import { MovieContext } from "../context/movie.context"
 import MovieCard from "../components/MovieCard"
 import { MovieContext } from "../context/movie.context"
+import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 import { baseUrl } from "../services/baseUrl"
 
@@ -15,7 +16,11 @@ const AddMovie = () => {
     const navigate = useNavigate()
     const { movieName } = useParams()
 
+    const { authenicateUser } = useContext(AuthContext)
+
+
     useEffect(() => {
+        authenicateUser()
         movieSearch(movieName)
             .then((res) => {
                 setMovie(res.data)

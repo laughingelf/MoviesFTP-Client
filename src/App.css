@@ -74,12 +74,13 @@ nav {
 }
 
 #nav-links a,
-#nav-login a {
-  margin: 0 5px 0 5px;
+#nav-login a,
+#nav-login button {
+  margin: 0 3px 0 3px;
   color: white;
 }
 
-#search-bar {
+# #search-bar {
   margin: 1vh 0 1vh 1vh;
 }
 
@@ -134,6 +135,7 @@ nav {
 
 #add-movie-btn {
   margin-left: 3%;
+  margin-top: 3%;
 }
 
 #movie-card-data {

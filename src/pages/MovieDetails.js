@@ -3,16 +3,19 @@ import { MovieContext } from "../context/movie.context"
 import { useParams } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
 import { baseUrl } from "../services/baseUrl"
+import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 
 
 const MovieDetails = () => {
 
-    const { movieData, user } = useContext(MovieContext)
+    const { movieData, user, getMovies } = useContext(MovieContext)
+    const { authenicateUser } = useContext(AuthContext)
     const [movie, setMovie] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [showEditModal, setShowEditModal] = useState(false)
-
+    const [ratingId, setRatingId] = useState(null)
+    const [toggle, setToggle] = useState(false)
     const [updatedCommentData, setUpdatedCommentData] = useState()
 
     const [commentData, setCommentData] = useState({
@@ -23,23 +26,24 @@ const MovieDetails = () => {
         trashCanRating: '1'
     })
 
+
     // console.log('MOVIE', movie.userRatings)
 
     const { id } = useParams()
-    let modalHeader
 
     const handleRatingUpdateInfo = (e) => {
         setUpdatedCommentData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         // console.log('the value', e.target.value)
     }
 
-    const handleRatingUpdateSubmit = (e, ratingId) => {
+    const handleRatingUpdateSubmit = (e) => {
         e.preventDefault()
         setShowEditModal(false)
         console.log('updated comment data', updatedCommentData)
         axios.post(baseUrl + `/comment/update-comment/${ratingId}`, updatedCommentData)
             .then((updatedComment) => {
                 console.log('updated COMMENT', updatedComment.data)
+                setToggle(prev => !prev)
             })
             .catch((err) => {
                 console.log(err)
@@ -55,23 +59,38 @@ const MovieDetails = () => {
         setShowEditModal(true)
     }
 
+    const openEditModal = (e, specRatingId) => {
+        setShowEditModal(true)
+        setRatingId(specRatingId)
+    }
+
     const handleRatingDelete = (e) => {
         console.log('deleting')
+        e.preventDefault()
+        setShowEditModal(false)
+        axios.get(baseUrl + `/comment/delete-comment/${ratingId}`)
+            .then((deletedMovie) => {
+                setToggle(prev => !prev)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     const handleRatingSubmit = (e) => {
         e.preventDefault()
         setShowModal(false)
-        console.log('Rating Data', user._id)
 
-        axios.post(baseUrl + `/comment/add-comment/${movie._id}`, { ...commentData, username: user._id })
+        axios.post(baseUrl + `/comment/add-comment/${movie._id}`, { ...commentData, username: user._id, movieId: movie._id })
             .then((updatedMovie) => {
-                console.log('Updated Movie', updatedMovie.data)//need to do more not sure
+                console.log('Added Comment', updatedMovie.data)//need to do more not sure
+                setToggle(prev => !prev)
 
             })
     }
 
     useEffect(() => {
+        authenicateUser()
         movieData.map((mov) => {
             if (id === mov._id) {
                 setMovie(mov)
@@ -79,6 +98,10 @@ const MovieDetails = () => {
         })
 
     }, [movieData])
+
+    useEffect(() => {
+        getMovies()
+    }, [toggle])
 
     // const addMovie = () => {
     // }
@@ -230,9 +253,9 @@ const MovieDetails = () => {
                                 {movie.userRatings &&
 
                                     movie.userRatings.map((rating) => {
-                                        console.log('this is the rating', rating._id)
+                                        // console.log('this is the rating', rating._id)
                                         return (
-                                            <div className="comment-card">
+                                            <div className="comment-card" key={rating._id}>
                                                 {rating.username.username ?
                                                     <h1><span id="profile-title">{rating.username.username}</span></h1>
                                                     :
@@ -258,7 +281,7 @@ const MovieDetails = () => {
                                                     {rating.username._id === user._id ?
                                                         <div className="rating-buttons">
                                                             <button
-                                                                onClick={() => setShowEditModal(true)}>
+                                                                onClick={(e) => openEditModal(e, rating._id)}>
                                                                 Edit
                                                             </button>
 
@@ -283,6 +306,7 @@ const MovieDetails = () => {
                                                                                         </label>
                                                                                     </div>
                                                                                     <div className="mb-6">
+
                                                                                         <label htmlFor="overallRating" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Overall Rating:
                                                                                             <select id="overallRating" name="overallRating" onChange={handleRatingUpdateInfo} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                                                                 <option value="1">1</option>
@@ -336,13 +360,14 @@ const MovieDetails = () => {
                                                                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                                         id="silly-button"
                                                                                         type="submit"
-                                                                                        onClick={(e) => handleRatingUpdateSubmit(e, rating._id)}>
+                                                                                        onClick={handleRatingUpdateSubmit}>
                                                                                         Edit
                                                                                     </button>
                                                                                     <button
                                                                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                                         id="silly-button"
                                                                                         type="button"
+                                                                                        onClick={handleRatingDelete}
                                                                                     >
                                                                                         Delete
                                                                                     </button>

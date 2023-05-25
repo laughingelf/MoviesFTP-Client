@@ -46,13 +46,14 @@ function AuthContextProvider({ children }) {
         } else {
             setIsLoading(false)
             setUser(null)
+            navigate('/auth/login')
         }
     }
 
     const logOutUser = () => {
         removeToken()
         authenicateUser()
-        navigate('/')
+        navigate('/auth/login')
     }
 
     useEffect(() => {

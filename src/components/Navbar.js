@@ -35,11 +35,6 @@ const Navbar = () => {
                                     Profile
                                 </Link>
                             </button>
-                            <button>
-                                <Link to='/'>
-                                    Genres
-                                </Link>
-                            </button>
                             <button onClick={logOutUser}>
                                 Logout
                             </button>

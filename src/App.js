@@ -21,7 +21,7 @@ function App() {
       <SearchBar />
 
       <Routes>
-        <Route path='/' element={<Homepage />} />
+        <Route path='/' element={<MoviesList />} />
         <Route path='/movies/all-movies' element={<MoviesList />} />
         <Route path='/movies/movie-details/:id' element={<MovieDetails />} />
         <Route path='/movies/add-movie/:movieName' element={<AddMovie />} />

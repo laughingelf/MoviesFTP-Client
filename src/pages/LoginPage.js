@@ -10,7 +10,7 @@ const LoginPage = () => {
     const { setUser } = useContext(MovieContext)
 
     const { storeToken, authenicateUser } = useContext(AuthContext)
-
+    const [errorMessage, setErrorMessage] = useState(false);
     const [currUser, setCurrUser] = useState({
         email: "",
         password: ""
@@ -30,7 +30,7 @@ const LoginPage = () => {
                 console.log("this is the returned user details: ", res.data)
                 storeToken(res.data.authToken)
                 authenicateUser()
-                navigate('/users/profile')
+                navigate('/movies/all-movies')
             })
             .catch((err) => {
                 console.log(err)
@@ -59,8 +59,12 @@ const LoginPage = () => {
 
             </form>
 
+            {errorMessage && (
+                <p className="error"> {errorMessage} </p>
+            )}
 
-        </div>
+
+        </div >
     )
 }
 
