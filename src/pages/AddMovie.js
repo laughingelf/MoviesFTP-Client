@@ -18,9 +18,14 @@ const AddMovie = () => {
 
     const { authenicateUser } = useContext(AuthContext)
 
+    const apiKey = '207ef136'
+
+    const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&`
+
 
     useEffect(() => {
-        movieSearch(movieName)
+        // movieSearch(movieName)
+        axios.get(apiUrl, { params: { t: movieName } })
             .then((res) => {
                 console.log('searching for movie', res.data)
                 setMovie(res.data)
