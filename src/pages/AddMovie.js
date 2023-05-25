@@ -20,8 +20,7 @@ const AddMovie = () => {
 
 
     useEffect(() => {
-        // movieSearch(movieName)
-        axios.get(apiUrl, { params: { t: movieName } })
+        movieSearch(movieName)
             .then((res) => {
                 console.log('searching for movie', res.data)
                 setMovie(res.data)
