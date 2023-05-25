@@ -20,7 +20,7 @@ const AddMovie = () => {
 
 
     useEffect(() => {
-        authenicateUser()
+        // authenicateUser()
         movieSearch(movieName)
             .then((res) => {
                 setMovie(res.data)
