@@ -28,7 +28,7 @@ const AddMovie = () => {
             .catch((err) => {
                 console.log(err)
             })
-        console.log('got you ', movieData)
+        // console.log('got you ', movieData)
 
     }, [movieName])
 
