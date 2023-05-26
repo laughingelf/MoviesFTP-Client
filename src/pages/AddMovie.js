@@ -102,11 +102,11 @@ const AddMovie = () => {
 
 
 
+            <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
 
             {movie ? (
 
                 <div id="add-movie-card">
-                    <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
                     <div id="movie-card-poster">
 
                         {/* {console.log('this is the MOVIE', movie)} */}
