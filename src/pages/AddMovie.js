@@ -12,7 +12,7 @@ import { baseUrl } from "../services/baseUrl"
 
 const AddMovie = () => {
     const { movieData, setMovieData } = useContext(MovieContext)
-    const [movie, setMovie] = useState('')
+    const [movie, setMovie] = useState()
     const navigate = useNavigate()
     const { movieName } = useParams()
 
@@ -24,16 +24,48 @@ const AddMovie = () => {
 
 
     useEffect(() => {
-        // movieSearch(movieName)
-        axios.get(baseUrl + `/movies/search-movies/${movieName}`,)
-            .then((res) => {
-                console.log('searching for movie', res.data)
-                setMovie(res.data)
+        const titleOptions = {
+            method: 'GET',
+            url: 'https://movie-database-alternative.p.rapidapi.com/',
+            params: {
+                s: movieName,
+                r: 'json',
+            },
+            headers: {
+                'X-RapidAPI-Key': '39af2f4383msha9a56f3ac4a9f8ep12c99ajsn19417c0ac7dd',
+                'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
+            }
+        };
+
+        axios.request(titleOptions)
+            .then((foundMovie) => {
+                if (foundMovie) {
+                    const movId = foundMovie.data.Search[0].imdbID
+
+                    const idOptions = {
+                        method: 'GET',
+                        url: 'https://movie-database-alternative.p.rapidapi.com/',
+                        params: {
+                            r: 'json',
+                            i: movId
+                        },
+                        headers: {
+                            'X-RapidAPI-Key': '39af2f4383msha9a56f3ac4a9f8ep12c99ajsn19417c0ac7dd',
+                            'X-RapidAPI-Host': 'movie-database-alternative.p.rapidapi.com'
+                        }
+                    };
+
+                    axios.request(idOptions)
+                        .then((foundMovieData) => {
+                            console.log(movie)
+                            setMovie(foundMovieData.data)
+                        })
+                }
             })
             .catch((err) => {
                 console.log(err)
             })
-        // console.log('got you ', movieData)
+
 
     }, [movieName])
 
@@ -66,35 +98,48 @@ const AddMovie = () => {
 
     return (
         <div>
+
+
+
             <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
-            <div id="add-movie-card">
 
-                <div id="movie-card-poster">
-                    <h4>{movie.Title}</h4>
-                    <img src={movie.Poster} />
+
+            {movie ? (
+
+                <div id="add-movie-card">
+
+                    <div id="movie-card-poster">
+                        <h4>{movie.Title}</h4>
+                        <img src={movie.Poster} />
+                    </div>
+                    <div id="movie-card-data">
+                        <p><span className="moviedata-details">Released Date: </span>&nbsp;{movie.Year}</p>
+                        <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
+                        <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
+                        <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
+                        <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
+                        <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
+                        <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
+                        <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
+                        <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
+                        <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
+                        <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
+
+
+
+                    </div>
+
+
                 </div>
-                <div id="movie-card-data">
-                    <p><span className="moviedata-details">Released Date: </span>&nbsp;{movie.Year}</p>
-                    <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
-                    <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
-                    <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
-                    <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
-                    <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
-                    <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
-                    <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
-                    <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
-                    <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
-                    <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
 
-
-
-                </div>
-
-
-            </div>
+            ) :
+                <p>Loading...</p>}
 
         </div>
     )
+
 }
 
 export default AddMovie
+
+

@@ -146,6 +146,7 @@ nav {
   background-color: whitesmoke;
   /* width: 50%; */
   margin-left: 15vw;
+  margin: 2vh 15vw 2vh 15vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
