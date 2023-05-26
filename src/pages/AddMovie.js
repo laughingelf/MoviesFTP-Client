@@ -101,35 +101,41 @@ const AddMovie = () => {
 
 
 
-            <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
 
 
             {movie ? (
 
                 <div id="add-movie-card">
-
+                    <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
                     <div id="movie-card-poster">
+
+                        {/* {console.log('this is the MOVIE', movie)} */}
+
                         <h4>{movie.Title}</h4>
                         <img src={movie.Poster} />
                     </div>
-                    <div id="movie-card-data">
-                        <p><span className="moviedata-details">Released Date: </span>&nbsp;{movie.Year}</p>
-                        <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
-                        <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
-                        <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
-                        <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
-                        <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
-                        <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
-                        <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
-                        <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
-                        <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
-                        <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
 
+                    <div id="movie-card-and-comments">
+
+                        <div id="movie-card-data">
+                            <p><span className="moviedata-details">Released Date:</span>&nbsp;{movie.Year}</p>
+                            <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
+                            <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
+                            <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
+                            <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
+                            <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
+                            <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
+                            <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
+                            <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
+                            <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
+                            <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
+
+
+
+                        </div>
 
 
                     </div>
-
-
                 </div>
 
             ) :
