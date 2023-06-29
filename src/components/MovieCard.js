@@ -19,12 +19,12 @@ const MovieCard = (movie) => {
 
 
     return (
-        <div id="add-movie-card">
-            <div id="movie-card-poster">
+        <div id="add-movie-card" className="flex flex-col sm:flex-row">
+            <div id="movie-card-poster" className="flex flex-col items-center justify-center">
                 <h4>{movie.Title}</h4>
-                <img src={movie.Poster} />
+                <img src={movie.Poster} alt="movie-poster" className="w-64 sm:w-96" />
             </div>
-            <div id="movie-card-data">
+            <div id="movie-card-data" className="flex flex-col ml-8">
                 <p><span className="moviedata-details">Released Date: </span>{movie.Year}</p>
                 <p><span className="moviedata-details">Rated: </span>{movie.Rated}</p>
                 <p><span className="moviedata-details">Runtime: </span>{movie.Runtime}</p>
@@ -36,13 +36,10 @@ const MovieCard = (movie) => {
                 <p><span className="moviedata-details">IMDB Rating: </span>{movie.imdbRating}</p>
                 <p><span className="moviedata-details">IMDB Votes: </span>{movie.imdbVotes}</p>
                 <p><span className="moviedata-details">Box Office: </span>{movie.BoxOffice}</p>
-                <button onClick={addMovie}>Add Movie</button>
-
-
+                <button onClick={addMovie} className="mt-4">Add Movie</button>
             </div>
-
-
         </div>
+
     )
 }
 

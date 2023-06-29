@@ -44,27 +44,38 @@ const LoginPage = () => {
 
 
     return (
-        <div id="login-page">
-
-            <form id="login-form" onSubmit={handleLogin}>
-                Login
-                <label>Email:
-                    <input type='email' name='email' id="email" value={currUser.email} onChange={handleChange} />
+        <div id="login-page" className="bg-gray-100 py-8 flex flex-col items-center">
+            <form id="login-form" onSubmit={handleLogin} className="bg-white shadow-lg rounded-lg px-8 py-6">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Login</h2>
+                <label className="text-gray-700">
+                    Email:
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={currUser.email}
+                        onChange={handleChange}
+                        className="block w-full border-gray-300 rounded-lg mt-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
                 </label>
-                <label>Password:
-                    <input type='password' name='password' id="password" value={currUser.password} onChange={handleChange} />
+                <label className="text-gray-700">
+                    Password:
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={currUser.password}
+                        onChange={handleChange}
+                        className="block w-full border-gray-300 rounded-lg mt-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
                 </label>
-                <button type="submit">Login</button>
-
-
+                <button type="submit" className="bg-[#15B7B9] text-white font-semibold rounded-lg px-4 py-2 mt-4 hover:bg-gray-800 ml-3">
+                    Login
+                </button>
             </form>
 
-            {errorMessage && (
-                <p className="error"> {errorMessage} </p>
-            )}
-
-
-        </div >
+            {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
+        </div>
     )
 }
 

@@ -97,51 +97,62 @@ const AddMovie = () => {
 
 
     return (
-        <div>
-
-
-
-
-            <button id="add-movie-btn" onClick={handleAddMovie} >Add Movie</button>
+        <div className="flex flex-col items-center">
+            <button id="add-movie-btn" onClick={handleAddMovie} className="px-4 py-2 bg-[#15B7B9] text-white rounded-lg shadow-md">
+                Add Movie
+            </button>
 
             {movie ? (
-
-                <div id="add-movie-card">
-                    <div id="movie-card-poster">
-
-                        {/* {console.log('this is the MOVIE', movie)} */}
-
-                        <h4>{movie.Title}</h4>
-                        <img src={movie.Poster} />
+                <div id="add-movie-card" className="mt-8 bg-white rounded-lg shadow-md">
+                    <div id="movie-card-poster" className="p-6">
+                        <h4 className="text-xl font-semibold mb-4">{movie.Title}</h4>
+                        <img src={movie.Poster} alt="movie-poster" className="w-auto h-100 rounded-md" />
                     </div>
 
-                    <div id="movie-card-and-comments">
-
-                        <div id="movie-card-data">
-                            <p><span className="moviedata-details">Released Date:</span>&nbsp;{movie.Year}</p>
-                            <p><span className="moviedata-details">Rated: </span>&nbsp;{movie.Rated}</p>
-                            <p><span className="moviedata-details">Runtime: </span>&nbsp;{movie.Runtime}</p>
-                            <p><span className="moviedata-details">Genre: </span>&nbsp;{movie.Genre}</p>
-                            <p><span className="moviedata-details">Director: </span>&nbsp;{movie.Director}</p>
-                            <p><span className="moviedata-details">Main Actors: </span>&nbsp;{movie.Actors}</p>
-                            <p><span className="moviedata-details">Plot: </span>&nbsp;{movie.Plot}</p>
-                            <p><span className="moviedata-details">Awards: </span>&nbsp;{movie.Awards}</p>
-                            <p><span className="moviedata-details">IMDB Rating: </span>&nbsp;{movie.imdbRating}</p>
-                            <p><span className="moviedata-details">IMDB Votes: </span>&nbsp;{movie.imdbVotes}</p>
-                            <p><span className="moviedata-details">Box Office: </span>&nbsp;{movie.BoxOffice}</p>
-
-
-
+                    <div id="movie-card-and-comments" className="p-6">
+                        <div id="movie-card-data" className="grid grid-cols-2 gap-4">
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Released Date:</span>&nbsp;{movie.Year}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Rated:</span>&nbsp;{movie.Rated}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Runtime:</span>&nbsp;{movie.Runtime}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Genre:</span>&nbsp;{movie.Genre}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Director:</span>&nbsp;{movie.Director}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Main Actors:</span>&nbsp;{movie.Actors}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Plot:</span>&nbsp;{movie.Plot}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Awards:</span>&nbsp;{movie.Awards}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">IMDB Rating:</span>&nbsp;{movie.imdbRating}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">IMDB Votes:</span>&nbsp;{movie.imdbVotes}
+                            </p>
+                            <p className="text-sm">
+                                <span className="moviedata-details underline">Box Office:</span>&nbsp;{movie.BoxOffice}
+                            </p>
                         </div>
-
 
                     </div>
                 </div>
-
-            ) :
-                <p>Loading...</p>}
-
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
+
     )
 
 }
