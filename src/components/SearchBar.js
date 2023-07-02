@@ -27,7 +27,7 @@ const SearchBar = () => {
 
 
     return (
-        <div id="search-bar" className="flex items-center mt-1 mb-1">
+        <div id="search-bar" className="flex items-center m-2">
             <form className="flex" onSubmit={handleSearchSubmit}>
                 <input className="rounded-md form-input mr-2 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#15B7B9]" type="search" placeholder="Search" aria-label="Search" name="t" onChange={handleSearch} required />
                 <button className="bg-[#15B7B9] hover:bg-gray-500 text-white px-4 py-2 rounded-md" type="submit">Search</button>

@@ -97,7 +97,7 @@ const AddMovie = () => {
 
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="min-h-screen flex flex-col items-center">
             <button id="add-movie-btn" onClick={handleAddMovie} className="px-4 py-2 bg-[#15B7B9] text-white rounded-lg shadow-md">
                 Add Movie
             </button>
@@ -110,7 +110,7 @@ const AddMovie = () => {
                     </div>
 
                     <div id="movie-card-and-comments" className="p-6">
-                        <div id="movie-card-data" className="grid grid-cols-2 gap-4">
+                        <div id="movie-card-data" className="grid grid-cols-2 gap-4 border rounded-lg p-4 bg-gray-200 shadow-xl bg-opacity-30">
                             <p className="text-sm">
                                 <span className="moviedata-details underline">Released Date:</span>&nbsp;{movie.Year}
                             </p>

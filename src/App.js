@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage';
 import MovieDetails from './pages/MovieDetails';
 import UserProfile from './pages/UserProfile';
 import AddMovie from './pages/AddMovie';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
         <Route path='/auth/signup' element={<Signup />} />
         <Route path='/auth/login' element={<LoginPage />} />
       </Routes>
+
+      <Footer />
 
 
     </div>

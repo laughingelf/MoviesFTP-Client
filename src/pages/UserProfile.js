@@ -172,74 +172,105 @@ const UserProfile = () => {
         <div>
             {user ?
 
-                <div>
+                <div className="min-h-screen flex flex-col">
 
 
 
                     <div id="profile-page">
 
 
-                        <h3><span id="user-info">Profile</span></h3>
+                        <h3><span className="m-8 text-xl font-bold" id="user-info">Profile</span></h3>
 
-                        <div id="profile-card">
+                        <div className="mx-2 mt-4" id="profile-card">
 
                             <div id="profile-img">
-                                {user.profilePicUrl &&
-                                    <div id="img-card">
-                                        <img id="prof-img" src={user.profilePicUrl} alt='profile' />
-                                        <form id="update-photo-form" onSubmit={(e) => handleBackendPhotoChange(e, imgUrl)}>
-                                            <input type="file" name="imageUrl" id="imageUrl" onChange={handlePhotoUpdate} />
-                                            <button type="submit"
-                                                className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                {user.profilePicUrl && (
+                                    <div id="img-card" className="bg-gray-100 rounded-lg shadow-md p-4">
+                                        <img className="rounded-lg shadow-xl" id="prof-img" src={user.profilePicUrl} alt="profile" />
+                                        <form
+                                            id="update-photo-form"
+                                            onSubmit={(e) => handleBackendPhotoChange(e, imgUrl)}
+                                            className="mt-4"
+                                        >
+                                            <input
+                                                type="file"
+                                                name="imageUrl"
+                                                id="imageUrl"
+                                                onChange={handlePhotoUpdate}
+                                                className="hidden"
+                                            />
+                                            <label
+                                                htmlFor="imageUrl"
+                                                className="inline-block bg-primary text-white font-medium rounded px-6 py-2 text-xs uppercase shadow-md transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+                                            >
                                                 Update Photo
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                }
-
-                                {!user.profilePicUrl &&
-
-                                    <div id="img-card">
-                                        <img id="prof-img" src="/img/profile-default.jpg" alt="default-profile" />
-                                        <form id="update-photo-form" onSubmit={(e) => handleBackendPhotoChange(e, imgUrl)} >
-                                            <input type="file" name="imageUrl" id="imageUrl" onChange={handlePhotoUpdate} />
-                                            <button type="submit"
-                                                className="text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                id="silly-button">
-                                                Update Photo
-                                            </button>
+                                            </label>
                                         </form>
                                     </div>
-                                }
+                                )}
 
+                                {!user.profilePicUrl && (
+                                    <div id="img-card" className="bg-gray-100 rounded-lg shadow-md p-4">
+                                        <img className="rounded-lg shadow-xl" id="prof-img" src="/img/profile-default.jpg" alt="default-profile" />
+                                        <form
+                                            id="update-photo-form"
+                                            onSubmit={(e) => handleBackendPhotoChange(e, imgUrl)}
+                                            className="mt-4"
+                                        >
+                                            <input
+                                                type="file"
+                                                name="imageUrl"
+                                                id="imageUrl"
+                                                onChange={handlePhotoUpdate}
+                                                className="hidden"
+                                            />
+                                            <label
+                                                htmlFor="imageUrl"
+                                                className="inline-block bg-primary text-white font-medium rounded px-6 py-2 text-xs uppercase shadow-md transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+                                            >
+                                                Update Photo
+                                            </label>
+                                        </form>
+                                    </div>
+                                )}
                             </div>
 
-                            <div id="profile-data">
 
-                                <h3><span id="user-info">Username:</span>&nbsp;{user.username}</h3>
-                                <h3><span id="user-info">Email:</span>&nbsp;{user.email}</h3>
-                                <h3><span id="user-info">Name:</span>&nbsp; {user.firstName} {user.lastName}</h3>
-                                {user.birthDate ?
-                                    <h4><span id="user-info">Birthdate:</span>&nbsp; {user.birthDate.slice(0, 10)}</h4>
-                                    :
-                                    <h4><span id="user-info">Birthdate:</span>&nbsp; {user.birthDate}</h4>
-                                }
+                            <div id="profile-data" className="bg-gray-100 rounded-lg shadow-md p-4 my-4">
+                                <h3 className="mb-4">
+                                    <span className="user-info">Username:</span>&nbsp;{user.username}
+                                </h3>
+                                <h3 className="mb-4">
+                                    <span className="user-info">Email:</span>&nbsp;{user.email}
+                                </h3>
+                                <h3 className="mb-4">
+                                    <span className="user-info">Name:</span>&nbsp;{user.firstName} {user.lastName}
+                                </h3>
+                                {user.birthDate ? (
+                                    <h4 className="mb-4">
+                                        <span className="user-info">Birthdate:</span>&nbsp;{user.birthDate.slice(0, 10)}
+                                    </h4>
+                                ) : (
+                                    <h4 className="mb-4">
+                                        <span className="user-info">Birthdate:</span>&nbsp;{user.birthDate}
+                                    </h4>
+                                )}
 
-                                <br />
-                                <br />
                                 <button
-                                    className="text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    className="inline-block bg-primary text-white font-medium rounded mx-2 px-6 py-2 text-xs uppercase shadow-md transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
                                     id="silly-button"
-                                    type="button" onClick={() => setShowModal(true)}
+                                    type="button"
+                                    onClick={() => setShowModal(true)}
                                 >
                                     Edit Profile
                                 </button>
-                                <br />
+
                                 <button
-                                    className="text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    className="inline-block bg-primary text-white font-medium rounded mx-2 px-6 py-2 text-xs uppercase shadow-md transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
                                     id="silly-button"
-                                    type="button" onClick={() => setShowDeleteModal(true)}>
+                                    type="button"
+                                    onClick={() => setShowDeleteModal(true)}
+                                >
                                     Delete Profile
                                 </button>
                                 <br />
@@ -249,84 +280,99 @@ const UserProfile = () => {
 
                                 {showModal ? (
                                     <>
-                                        <div
-                                            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-                                        >
-                                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                                                {/*content*/}
-                                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                                    {/*header*/}
-                                                    <div className="flex items-start justify-between p-2 border-b border-solid border-slate-200 rounded-t">
-                                                        {/* className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t" */}
-                                                        <h3 className="text-3xl font-semibold">
+                                        <div class="fixed inset-0 z-50 flex items-center justify-center m">
+                                            <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto">
+                                                <div class="p-6 border rounded-lg">
+                                                    <div class="flex items-start justify-between p-2 border-b border-solid border-slate-200 rounded-t">
+                                                        <h3 class="text-3xl font-semibold">
                                                             Update Profile
                                                         </h3>
-
                                                     </div>
-                                                    {/*body*/}
-
                                                     {
-
                                                         profileInfo ?
-
-
                                                             <form id="update-form" onSubmit={handleProfileUpdate}>
-                                                                <div className="mb-6">
-                                                                    <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Username:
-                                                                        <input type="text" id="username" name="username" value={profileInfo.username} onChange={handleProfileChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                                                    </label>
+                                                                <div class="mb-4">
+                                                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Username:</label>
+                                                                    <input
+                                                                        type="text"
+                                                                        id="username"
+                                                                        name="username"
+                                                                        value={profileInfo.username}
+                                                                        onChange={handleProfileChange}
+                                                                        class="bg-gray-100 border border-gray-300 text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-1"
+                                                                        required
+                                                                    />
                                                                 </div>
-                                                                <div className="mb-6">
-                                                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Email:
-                                                                        <input type="email" id="email" name="email" value={profileInfo.email} onChange={handleProfileChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                                                    </label>
+                                                                <div class="mb-6">
+                                                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Email:</label>
+                                                                    <input
+                                                                        type="email"
+                                                                        id="email"
+                                                                        name="email"
+                                                                        value={profileInfo.email}
+                                                                        onChange={handleProfileChange}
+                                                                        class="bg-gray-100 border border-gray-300 text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-1"
+                                                                        required
+                                                                    />
                                                                 </div>
-                                                                <div className="mb-6">
-                                                                    <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">First Name:
-                                                                        <input type="text" id="firstName" name="firstName" value={profileInfo.firstName} onChange={handleProfileChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                                                    </label>
+                                                                <div class="mb-6">
+                                                                    <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">First Name:</label>
+                                                                    <input
+                                                                        type="text"
+                                                                        id="firstName"
+                                                                        name="firstName"
+                                                                        value={profileInfo.firstName}
+                                                                        onChange={handleProfileChange}
+                                                                        class="bg-gray-100 border border-gray-300 text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-1"
+                                                                        required
+                                                                    />
                                                                 </div>
-                                                                <div className="mb-6">
-                                                                    <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Last Name:
-                                                                        <input type="text" id="lastName" name="lastName" value={profileInfo.lastName} onChange={handleProfileChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                                                    </label>
+                                                                <div class="mb-6">
+                                                                    <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Last Name:</label>
+                                                                    <input
+                                                                        type="text"
+                                                                        id="lastName"
+                                                                        name="lastName"
+                                                                        value={profileInfo.lastName}
+                                                                        onChange={handleProfileChange}
+                                                                        class="bg-gray-100 border border-gray-300 text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-1"
+                                                                        required
+                                                                    />
                                                                 </div>
-                                                                <div className="mb-6">
-                                                                    <label htmlFor="birthDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Birthdate:
-                                                                        <input type="date" id="birthDate" name="birthDate" value={profileInfo.birthDate} onChange={handleProfileChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                                    </label>
+                                                                <div class="mb-6">
+                                                                    <label for="birthDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Birthdate:</label>
+                                                                    <input
+                                                                        type="date"
+                                                                        id="birthDate"
+                                                                        name="birthDate"
+                                                                        value={profileInfo.birthDate}
+                                                                        onChange={handleProfileChange}
+                                                                        class="bg-gray-100 border border-gray-300 text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-1"
+                                                                    />
                                                                 </div>
                                                                 <button
-                                                                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                                    class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                     id="silly-button"
                                                                     type="submit"
-                                                                // onClick={() => setShowModal(false)}
-
                                                                 >
                                                                     Save Changes
                                                                 </button>
                                                                 <button
-                                                                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                                    class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                     id="silly-button"
                                                                     type="button"
                                                                     onClick={() => setShowModal(false)}
                                                                 >
                                                                     Close
                                                                 </button>
-
                                                             </form>
-
                                                             :
                                                             <p>No User Info.....Yet</p>
-
                                                     }
-
-                                                    {/*footer*/}
-                                                    {/* <div className="flex items-center justify-end p-2 border-t border-solid border-slate-200 rounded-b">
-                                        </div> */}
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                     </>
                                 ) : null}
@@ -335,45 +381,36 @@ const UserProfile = () => {
 
                                 {showDeleteModal ? (
                                     <>
-                                        <div
-                                            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-                                        >
-                                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                                                {/*content*/}
-                                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                                    {/*header*/}
-                                                    <div className="flex items-start justify-between p-2 border-b border-solid border-slate-200 rounded-t">
-                                                        {/* className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t" */}
-                                                        <h3 className="text-3xl font-semibold">
+                                        <div class="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                                            <div class="relative w-auto my-6 mx-auto max-w-3xl">
+                                                <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                                    <div class="flex items-start justify-between p-2 border-b border-solid border-slate-200 rounded-t">
+                                                        <h3 class="text-3xl font-semibold">
                                                             Delete Profile
                                                         </h3>
-
                                                     </div>
-                                                    <div id="delete-modal">
+                                                    <div id="delete-modal" class="p-6">
                                                         <button
-                                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                            class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                             id="silly-button"
                                                             type="submit"
                                                             onClick={() => deleteProfile()}
-
                                                         >
                                                             Yes - Delete
                                                         </button>
                                                         <button
-                                                            className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                            class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                             id="silly-button"
                                                             type="button"
                                                             onClick={() => setShowDeleteModal(false)}
                                                         >
                                                             Nevermind
                                                         </button>
-
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                     </>
                                 ) : null}

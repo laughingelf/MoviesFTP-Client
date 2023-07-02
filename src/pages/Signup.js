@@ -55,34 +55,27 @@ const Signup = () => {
 
 
     return (
-        <div id="login-page" className="bg-gray-200 py-8 px-4">
-
-            <form id="login-form" onSubmit={handleSignup} className="max-w-sm mx-auto bg-white rounded-lg shadow-md p-6">
-
+        <div id="login-page" className="min-h-screen flex flex-col bg-gray-200 py-8 px-4">
+            <form id="login-form" onSubmit={handleSignup} className="max-w-sm mx-auto bg-gray-400 bg-opacity-60 rounded-lg shadow-md p-6 ">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Sign Up</h2>
-
                 <label className="block mb-4">
-                    Email:
-                    <input type="email" name="email" id="email" value={newUser.email} onChange={handleChange} className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" />
+                    <span className="text-gray-700">Email:</span>
+                    <input type="email" name="email" id="email" value={newUser.email} onChange={handleChange} className="block w-full border-gray-300 rounded-lg mt-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                 </label>
-
                 <label className="block mb-4">
-                    Username:
-                    <input type="text" name="username" id="username" value={newUser.username} onChange={handleChange} className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" />
+                    <span className="text-gray-700">Username:</span>
+                    <input type="text" name="username" id="username" value={newUser.username} onChange={handleChange} className="block w-full border-gray-300 rounded-lg mt-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                 </label>
-
                 <label className="block mb-4">
-                    Password:
-                    <input type="password" name="password" id="password" value={newUser.password} onChange={handleChange} className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" />
+                    <span className="text-gray-700">Password:</span>
+                    <input type="password" name="password" id="password" value={newUser.password} onChange={handleChange} className="block w-full border-gray-300 rounded-lg mt-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                 </label>
-
-                <button type="submit" className="w-full bg-[#15B7B9] text-white font-semibold rounded-lg px-4 py-2 hover:bg-gray-800">
+                <button type="submit" className="w-full bg-[#15B7B9] text-white border font-semibold rounded-lg px-4 py-2 hover:bg-gray-800">
                     Sign Up
                 </button>
-
             </form>
-
         </div>
+
     )
 }
 

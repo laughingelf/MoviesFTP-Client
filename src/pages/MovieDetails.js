@@ -107,7 +107,7 @@ const MovieDetails = () => {
     // }
 
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
 
 
             {
@@ -119,14 +119,14 @@ const MovieDetails = () => {
 
                             {/* {console.log('this is the MOVIE', movie)} */}
 
-                            <h4 className="text-xl font-bold">{movie.Title}</h4>
-                            <img src={movie.Poster} />
+                            <h4 className="m-8 text-xl font-bold">{movie.Title}</h4>
+                            <img className="m-8 rounded-lg shadow-xl" src={movie.Poster} />
                         </div>
 
                         <div id="movie-card-and-comments">
 
                             <div id="movie-card-data">
-                                <div className="moviedata-container">
+                                <div className="moviedata-container my-4 mx-8">
                                     <p><span className="moviedata-details">Released Date:</span>&nbsp;{movie.Year}</p>
                                     <p><span className="moviedata-details">Rated:</span>&nbsp;{movie.Rated}</p>
                                     <p><span className="moviedata-details">Runtime:</span>&nbsp;{movie.Runtime}</p>
@@ -142,7 +142,7 @@ const MovieDetails = () => {
 
                                 {/* <p><span className="moviedata-details">User Ratings: </span>&nbsp;{movie.userRatings}</p> */}
                                 <button
-                                    className="bg-[#15B7B9] text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    className="bg-[#15B7B9] text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-2 mx-8 mb-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     id="silly-button"
                                     type="button" onClick={() => setShowModal(true)}
                                 >
@@ -151,9 +151,9 @@ const MovieDetails = () => {
 
                                 {showModal ? (
                                     <>
-                                        <div className="fixed inset-0 z-50 flex items-center justify-center">
+                                        <div className="fixed inset-0 z-50 flex items-center justify-center mx-4">
                                             <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto">
-                                                <div className="p-6">
+                                                <div className="p-6 border rounded-lg">
                                                     <form id="rating-form" onSubmit={handleRatingSubmit}>
                                                         <div className="mb-4">
                                                             <label htmlFor="userComments" className="text-gray-700 font-medium">Comments:</label>
@@ -254,39 +254,39 @@ const MovieDetails = () => {
                                     </>
                                 ) : null}
 
-                                <div id="comments">
+                                <div className="mx-2" id="comments">
                                     {movie.userRatings &&
                                         movie.userRatings.map((rating) => {
                                             return (
-                                                <div className="comment-card" key={rating._id}>
+                                                <div className="comment-card max-w-sm mx-auto bg-white rounded-lg shadow-md p-6 my-6 border " key={rating._id}>
                                                     {rating.username.username ? (
                                                         <h1>
-                                                            <span id="profile-title">{rating.username.username}</span>
+                                                            <span className="text-2xl font-bold mb-2 text-gray-800" id="profile-title">{rating.username.username}</span>
                                                         </h1>
                                                     ) : (
                                                         <h1>
-                                                            <span id="profile-title">user No longer Exists</span>
+                                                            <span className="text-2xl font-bold mb-2 text-gray-800" id="profile-title">user No longer Exists</span>
                                                         </h1>
                                                     )}
-                                                    <div id="comment">
-                                                        <label>
-                                                            <span id="comment-title">Comments</span>
-                                                            <p>{rating.userComments}</p>
+                                                    <div className="mb-4">
+                                                        <label className="text-gray-700">
+                                                            <span className="text-lg font-semibold mb-2 text-gray-800">Comments</span>
+                                                            <p className="text-gray-600">{rating.userComments}</p>
                                                         </label>
                                                     </div>
-                                                    <div id="ratings">
-                                                        <label>
-                                                            <span className="rating-label">Overall Rating:</span>
+                                                    <div className="mb-4 flex">
+                                                        <label className="text-gray-700">
+                                                            <span className="text-lg font-semibold mb-2 text-gray-800">Overall Rating:</span>
+                                                            <p className="text-gray-600">{rating.overallRating}</p>
                                                         </label>
-                                                        <p>{rating.overallRating}</p>
-                                                        <label>
-                                                            <span className="rating-label">Watch Again Rating:</span>
+                                                        <label className="text-gray-700">
+                                                            <span className="text-lg font-semibold mb-2 text-gray-800">Watch Again Rating:</span>
+                                                            <p className="text-gray-600">{rating.watchAgainRating}</p>
                                                         </label>
-                                                        <p>{rating.watchAgainRating}</p>
-                                                        <label>
-                                                            <span className="rating-label">Trash Can Rating:</span>
+                                                        <label className="text-gray-700">
+                                                            <span className="text-lg font-semibold mb-2 text-gray-800">Trash Can Rating:</span>
+                                                            <p className="text-gray-600">{rating.trashCanRating}</p>
                                                         </label>
-                                                        <p>{rating.trashCanRating}</p>
                                                     </div>
                                                     <div>
                                                         {rating.username._id === user._id ? (

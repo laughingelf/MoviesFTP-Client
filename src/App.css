@@ -1,17 +1,17 @@
 .modal-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
 .moviedata-container {
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .moviedata-details {
-    font-weight: bold;
+  font-weight: bold;
 }
